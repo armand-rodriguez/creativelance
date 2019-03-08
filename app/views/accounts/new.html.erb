@@ -1,0 +1,7 @@
+<%= form_with(model: @account, local: true) do |f| %>
+  <div class="field">
+    <%= f.label :account_type %>
+    <%= f.text_area :account_type, class: 'form-control' %>
+  </div>
+  <%= f.submit 'New Account', class: 'btn btn-primary' %>
+<% end %>
