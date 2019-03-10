@@ -16,8 +16,11 @@ class AccountsController < ApplicationController
   def create
     @account = Account.new(account_params)
     @account.update_attributes(user_id: current_user.id)
+    byebug
     if @account.save
-      redirect_to @account
+      @panel = Panel.find_by(user_id: current_user.id)
+      @panel.update_attributes(account_id: @account.id)
+      redirect_to new_freelancer_path
     else
       render 'new'
     end
@@ -42,7 +45,7 @@ class AccountsController < ApplicationController
   end
 
   def account_params
-    params.require(:account).permit(:account_type)
+    params.require(:account).permit(:account_type, :registration_status_id)
   end
 
 end

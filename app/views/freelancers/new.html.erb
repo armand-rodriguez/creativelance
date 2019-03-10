@@ -1,0 +1,35 @@
+<div class="container">
+  <div>
+    <%= @account.registration_status.reg_status %>
+  </div>
+  <%= form_with(model: @freelancer, local: true) do |f| %>
+    <% if @freelancer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@freelancer.errors.count, "error") %> prohibited this @freelancer from being saved:</h2>
+
+      <ul>
+      <% @freelancer.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+    <% end %>
+    <div class="field">
+      <%= f.label :skills %>
+      <%= f.text_field :skills, class: 'form-control input' %>
+    </div>
+    <div class="field">
+      <%= f.label :specialization %>
+      <%= f.text_field :specialization, class: 'form-control input' %>
+    </div>
+    <div class="field">
+      <%= f.label :description %>
+      <%= f.text_field :description, class: 'form-control input' %>
+    </div>
+    <div class="field">
+      <%= f.label :resume %>
+      <%= f.text_area :resume, class: 'form-control input' %>
+    </div>
+    <%= f.submit 'Create this Freelancer', class: 'btn btn-primary' %>
+  <% end %>
+</div>

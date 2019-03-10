@@ -1,0 +1,22 @@
+<div class="container">
+  <h1>Panel</h1>
+  <p></p>
+  <p class="mb-2"><%= @user.email %></p>
+  <p class="mb-2"><%= @user.account.account_type %></p>
+
+  <bold>Profile</bold>
+  <hr>
+  <strong><p>Skills</p></strong>
+  <p><%= @user.freelancer.skills %></p>
+  <hr>
+  <strong><p>About Me</p></strong>
+  <p><%= @user.freelancer.description %></p>
+  <hr>
+  <strong><p>Specialization</p></strong>
+  <p><%= @user.freelancer.specialization %></p>
+  <hr>
+  <strong><p>Resume</p></strong>
+  <p><%= @user.freelancer.resume %></p>
+  <hr>
+
+</div>
