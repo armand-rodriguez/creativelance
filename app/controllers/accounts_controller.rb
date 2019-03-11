@@ -14,13 +14,19 @@ class AccountsController < ApplicationController
   end
 
   def create
+    @user = current_user
     @account = Account.new(account_params)
     @account.update_attributes(user_id: current_user.id)
-    byebug
     if @account.save
       @panel = Panel.find_by(user_id: current_user.id)
       @panel.update_attributes(account_id: @account.id)
-      redirect_to new_freelancer_path
+      @user.update_attributes(registration_status_id: 2)
+      if @account.account_type == 'Freelancer'
+        redirect_to new_freelancer_path
+      end
+      if @account.account_type == 'Recruiter'
+        redirect_to new_recruiter_path
+      end
     else
       render 'new'
     end

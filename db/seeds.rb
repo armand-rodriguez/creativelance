@@ -5,5 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-    RegistrationStatus.create!(reg_status: "Step 1: Create Freelancer or Recruiter Account")
-    RegistrationStatus.create!(reg_status: "Step 2: Create Account Profile")
+    RegistrationStatus.create!(reg_status: "Step 1: Choose Account Type")
+    RegistrationStatus.create!(reg_status: "Step 2: Edit Account Profile")
+    RegistrationStatus.create!(reg_status: "Step 3: Initial Registration Complete")

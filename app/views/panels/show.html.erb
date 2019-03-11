@@ -1,22 +1,52 @@
 <div class="container">
   <h1>Panel</h1>
+  <div>
+    <%= current_user.registration_status.reg_status %>
+  </div>
   <p></p>
-  <p class="mb-2"><%= @user.email %></p>
-  <p class="mb-2"><%= @user.account.account_type %></p>
+  <strong><p class="mb-2"><%= @user.email %></p></strong>
+  <strong><p class="mb-2"><%= @user.account.account_type %></p></strong>
 
-  <bold>Profile</bold>
+  <strong>Profile</strong>
   <hr>
-  <strong><p>Skills</p></strong>
-  <p><%= @user.freelancer.skills %></p>
-  <hr>
-  <strong><p>About Me</p></strong>
-  <p><%= @user.freelancer.description %></p>
-  <hr>
-  <strong><p>Specialization</p></strong>
-  <p><%= @user.freelancer.specialization %></p>
-  <hr>
-  <strong><p>Resume</p></strong>
-  <p><%= @user.freelancer.resume %></p>
-  <hr>
+  <% if @user.freelancer %>
+    <div class="row">
+      <div class="col-lg-8">
+        <strong><p>Name</p></strong>
+        <p><%= @user.freelancer.first_name.capitalize %> <%= @user.freelancer.last_name.capitalize  %></p>
+        <hr>
+        <strong><p>Skills</p></strong>
+        <p><%= @user.freelancer.skills %></p>
+        <hr>
+        <strong><p>About Me</p></strong>
+        <p><%= @user.freelancer.description %></p>
+        <hr>
+        <strong><p>Specialization</p></strong>
+        <p><%= @user.freelancer.specialization %></p>
+        <hr>
+        <strong><p>Resume</p></strong>
+        <p><%= @user.freelancer.resume %></p>
+        <hr>
+      </div>
+    </div>
+  <% end %>
+  <% if @user.recruiter %>
+    <div class="row">
+      <div class="col-8 offset-2">
+        <strong><p>Name</p></strong>
+        <p><%= @user.recruiter.first_name.capitalize %> <%= @user.recruiter.last_name.capitalize  %></p>
+        <hr>
+        <strong><p>Skills</p></strong>
+        <p><%= @user.recruiter.company %></p>
+        <hr>
+        <strong><p>About Me</p></strong>
+        <p><%= @user.recruiter.company_description %></p>
+        <hr>
+        <strong><p>Specialization</p></strong>
+        <p><%= @user.recruiter.resume %></p>
+        <hr>
+      </div>
+    </div>
+  <% end %>
 
 </div>

@@ -13,7 +13,8 @@ class FreelancersController <ApplicationController
     @freelancer = Freelancer.new(freelancer_params)
     @freelancer.update_attributes(account_id: @account.id, user_id: @user.id, panel_id: @panel.id)
     if @freelancer.save
-      @account.update_attributes(registration_status_id: 2)
+      @user.update_attributes(registration_status_id: 3)
+      flash[:notice] = "You freelancer profile was successfully created!"
       redirect_to @panel
     else
       render 'new'
@@ -27,6 +28,6 @@ class FreelancersController <ApplicationController
   private
 
   def freelancer_params
-    params.require(:freelancer).permit(:skills, :specialization, :description, :resume)
+    params.require(:freelancer).permit(:skills, :specialization, :description, :resume, :first_name, :last_name)
   end
 end

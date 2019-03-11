@@ -22,11 +22,12 @@
 
 .jumbotron {
   //experimental
-  height: (100vh);
+  height: calc(100vh - 57.63px);
   background-image: url(/assets/jumbotron-background.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  margin-bottom: 0;
   //bootstrap override
 }
 
