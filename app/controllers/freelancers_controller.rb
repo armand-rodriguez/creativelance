@@ -1,4 +1,6 @@
 class FreelancersController <ApplicationController
+  load_and_authorize_resource
+
   def new
     @user = current_user
     @panel = @user.panel
@@ -14,7 +16,7 @@ class FreelancersController <ApplicationController
         redirect_to @panel and return
       end
       if @account.account_type == "Recruiter"
-        flash[:alert] = "You have created a freelancer account and are unable to create a recruiter account with this user!"
+        flash[:alert] = "You have created a recruiter account and are unable to create a freelancer account with this user!"
         redirect_to new_recruiter_path and return
       end
       @freelancer = Freelancer.new
@@ -40,7 +42,7 @@ class FreelancersController <ApplicationController
       flash[:notice] = "You freelancer profile was successfully created!"
       redirect_to @panel
     else
-      render 'new'
+      render :new
     end
   end
 

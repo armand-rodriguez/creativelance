@@ -1,4 +1,9 @@
 class PanelsController < ApplicationController
+  load_and_authorize_resource
+
+  def index
+    @panels = Panel.all
+  end
 
   def show
     @user = current_user

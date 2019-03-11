@@ -5,14 +5,16 @@
   </div>
   <%= form_with(model: @recruiter, local: true) do |f| %>
     <% if @recruiter.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@recruiter.errors.count, "error") %> prohibited this @recruiter from being saved:</h2>
+    <div class="alert alert-danger">
+      <div id="error_explanation">
+        <h2><%= pluralize(@recruiter.errors.count, "error") %> prohibited this recruiter profile from being saved:</h2>
 
-      <ul>
-      <% @recruiter.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% @recruiter.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
     </div>
     <% end %>
     <div class="field">

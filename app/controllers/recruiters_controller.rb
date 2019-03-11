@@ -1,4 +1,6 @@
 class RecruitersController < ApplicationController
+  load_and_authorize_resource
+  
   def new
     @user = current_user
     @panel = @user.panel
@@ -40,7 +42,7 @@ class RecruitersController < ApplicationController
       flash[:notice] = "You recruiter profile was successfully created!"
       redirect_to @panel
     else
-      render 'new'
+      render :new
     end
   end
 

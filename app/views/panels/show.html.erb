@@ -10,43 +10,35 @@
   <strong>Profile</strong>
   <hr>
   <% if @user.freelancer %>
-    <div class="row">
-      <div class="col-lg-8">
-        <strong><p>Name</p></strong>
-        <p><%= @user.freelancer.first_name.capitalize %> <%= @user.freelancer.last_name.capitalize  %></p>
-        <hr>
-        <strong><p>Skills</p></strong>
-        <p><%= @user.freelancer.skills %></p>
-        <hr>
-        <strong><p>About Me</p></strong>
-        <p><%= @user.freelancer.description %></p>
-        <hr>
-        <strong><p>Specialization</p></strong>
-        <p><%= @user.freelancer.specialization %></p>
-        <hr>
-        <strong><p>Resume</p></strong>
-        <p><%= @user.freelancer.resume %></p>
-        <hr>
-      </div>
-    </div>
+    <strong><p>Name</p></strong>
+    <p><%= @user.freelancer.first_name.capitalize %> <%= @user.freelancer.last_name.capitalize  %></p>
+    <hr>
+    <strong><p>Skills</p></strong>
+    <p><%= @user.freelancer.skills %></p>
+    <hr>
+    <strong><p>About Me</p></strong>
+    <p><%= @user.freelancer.description %></p>
+    <hr>
+    <strong><p>Specialization</p></strong>
+    <p><%= @user.freelancer.specialization %></p>
+    <hr>
+    <strong><p>Resume</p></strong>
+    <p><%= @user.freelancer.resume %></p>
+    <hr>
   <% end %>
   <% if @user.recruiter %>
-    <div class="row">
-      <div class="col-8 offset-2">
-        <strong><p>Name</p></strong>
-        <p><%= @user.recruiter.first_name.capitalize %> <%= @user.recruiter.last_name.capitalize  %></p>
-        <hr>
-        <strong><p>Skills</p></strong>
-        <p><%= @user.recruiter.company %></p>
-        <hr>
-        <strong><p>About Me</p></strong>
-        <p><%= @user.recruiter.company_description %></p>
-        <hr>
-        <strong><p>Specialization</p></strong>
-        <p><%= @user.recruiter.resume %></p>
-        <hr>
-      </div>
-    </div>
+    <strong><p>Name</p></strong>
+    <p><%= @user.recruiter.first_name.capitalize %> <%= @user.recruiter.last_name.capitalize  %></p>
+    <hr>
+    <strong><p>Skills</p></strong>
+    <p><%= @user.recruiter.company %></p>
+    <hr>
+    <strong><p>About Me</p></strong>
+    <p><%= @user.recruiter.company_description %></p>
+    <hr>
+    <strong><p>Specialization</p></strong>
+    <p><%= @user.recruiter.resume %></p>
+    <hr>
   <% end %>
 
 </div>

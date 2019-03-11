@@ -1,0 +1,8 @@
+<div class="container">
+  <strong><h1 class="display-2">All Panels</h1></strong>
+  <% @panels.each do |panel| %>
+    <%= link_to "User No. #{panel.user.id}", panel, class: 'btn btn-primary rounded' %>
+    <p><%= panel.user.account.account_type %></p>
+  <% end %>
+  <hr>
+</div>
