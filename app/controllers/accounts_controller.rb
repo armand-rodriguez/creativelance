@@ -10,11 +10,34 @@ class AccountsController < ApplicationController
   end
 
   def new
+    @user = current_user
+    @panel = @user.panel
+    if @user.registration_status_id == 2 && @user.account.account_type == "Freelancer"
+      flash[:alert] = "You have already created an account!"
+      redirect_to new_freelancer_path and return
+    elsif @user.registration_status_id == 2 && @user.account.account_type == "Recruiter"
+      flash[:alert] = "You have already created an account!"
+      redirect_to new_recruiter_path and return
+    elsif @user.registration_status_id >= 3
+      flash[:alert] = "You have already created an account!"
+      redirect_to @panel and return
+    end
     @account = Account.new
   end
 
   def create
     @user = current_user
+    @panel = @user.panel
+    if @user.registration_status_id == 2 && @user.account.account_type == "Freelancer"
+      flash[:alert] = "You have already created an account!"
+      redirect_to new_freelancer_path and return
+    elsif @user.registration_status_id == 2 && @user.account.account_type == "Recruiter"
+      flash[:alert] = "You have already created an account!"
+      redirect_to new_recruiter_path and return
+    elsif @user.registration_status_id >= 3
+      flash[:alert] = "You have already created an account!"
+      redirect_to @panel and return
+    end
     @account = Account.new(account_params)
     @account.update_attributes(user_id: current_user.id)
     if @account.save
@@ -22,7 +45,7 @@ class AccountsController < ApplicationController
       @panel.update_attributes(account_id: @account.id)
       @user.update_attributes(registration_status_id: 2)
       if @account.account_type == 'Freelancer'
-        redirect_to new_freelancer_path
+        redirect_to new_freelancer_path 
       end
       if @account.account_type == 'Recruiter'
         redirect_to new_recruiter_path
