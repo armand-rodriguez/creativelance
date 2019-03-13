@@ -2,6 +2,7 @@ class Freelancer < ApplicationRecord
   belongs_to :user
   belongs_to :account
   belongs_to :panel
+  has_many :requests
   validates :skills, presence: true
   validates :specialization, presence: true
   validates :description, presence: true

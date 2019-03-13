@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_11_071435) do
+ActiveRecord::Schema.define(version: 2019_03_12_051501) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,16 @@ ActiveRecord::Schema.define(version: 2019_03_11_071435) do
     t.string "last_name"
   end
 
+  create_table "jobs", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "job_title"
+    t.string "job_description"
+    t.string "job_skills"
+    t.integer "recruiter_id"
+    t.integer "rate"
+  end
+
   create_table "panels", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -61,6 +71,21 @@ ActiveRecord::Schema.define(version: 2019_03_11_071435) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "reg_status"
+  end
+
+  create_table "request_statuses", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "req_status"
+  end
+
+  create_table "requests", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "freelancer_id"
+    t.integer "request_status_id", default: 1
+    t.string "request_description"
+    t.integer "job_id"
   end
 
   create_table "users", force: :cascade do |t|

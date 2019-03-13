@@ -1,0 +1,28 @@
+<div class="container">
+  <h1>All Jobs</h1>
+  <hr>
+  <div class="row">
+    <div class="col-1">
+
+    </div>
+    <div class="col-3">
+      <strong><p>Job Title</p></strong>
+    </div>
+    <div class="col-8">
+      <strong><p>Job Description</p></strong>
+    </div>
+  </div>
+  <% @jobs.each do |job| %>
+    <div class="row">
+      <div class="col-1">
+        <p><%= job.id %>. </p>
+      </div>
+      <div class="col-3">
+        <strong><p><%= link_to job.job_title, job %> </p></strong>
+      </div>
+      <div class="col-8">
+        <p><%= job.job_description %> </p>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -1,6 +1,6 @@
 class RecruitersController < ApplicationController
   load_and_authorize_resource
-  
+
   def new
     @user = current_user
     @panel = @user.panel

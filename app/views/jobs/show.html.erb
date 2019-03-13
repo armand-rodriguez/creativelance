@@ -1,0 +1,33 @@
+<div class="container">
+  <h1>
+    <bold>Job Posting</bold>
+  </h1>
+  <hr>
+
+  <div class="card mb-5">
+    <div class="card-body">
+      <h5 class="card-title"><%= @job.job_title %></h5>
+      <hr>
+      <h6 class="card-subtitle text-muted mb-2"><%= @job.job_description %></h6>
+      <p class="card-text"><%= @job.job_skills %></p>
+      <hr>
+      <h5 class="card-title">Rate</h5>
+      <p class="card-text"><%= number_to_currency(@job.rate/100.to_f) %></p>
+      <hr>
+      <% if @requests.count > 0 %>
+        <p><strong class="mr-1">Proposals Made:</strong><%= @requests.count %></p>
+      <% end %>
+    </div>
+  </div>
+  <% if @account.freelancer %>
+    <% if !@this_job_request %>
+    <%= form_for([@job, @job.requests.build], local: true) do |f| %>
+      <div class="form-field">
+        <%= f.label :request_description %>
+        <%= f.text_area :request_description, class: 'form-control mb-2', style: 'height: 200px;' %>
+      </div>
+      <%= f.submit 'Make Proposal', class: 'btn btn-primary rounded mb-5' %>
+    <% end %>
+    <% end %>
+  <% end %>
+</div>

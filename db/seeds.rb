@@ -8,3 +8,6 @@
     RegistrationStatus.create!(reg_status: "Step 1: Choose Account Type")
     RegistrationStatus.create!(reg_status: "Step 2: Edit Account Profile")
     RegistrationStatus.create!(reg_status: "Step 3: Initial Registration Complete")
+    RequestStatus.create!(req_status: 'pending')
+    RequestStatus.create!(req_status: 'accepted')
+    RequestStatus.create!(req_status: 'rejected')
