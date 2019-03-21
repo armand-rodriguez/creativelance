@@ -1,0 +1,11 @@
+<div class="container">
+  <h1>My Public Profile</h1>
+  <% if @account.freelancer %>
+    <%= @user.account.freelancer.first_name %>
+    <%= @user.account.freelancer.last_name %>
+  <% end %>
+  <% if @account.recruiter %>
+    <%= @user.account.recruiter.first_name %>
+    <%= @user.account.recruiter.last_name %>
+  <% end %>
+</div>

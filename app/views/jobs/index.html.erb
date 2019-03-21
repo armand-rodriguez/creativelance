@@ -1,28 +1,16 @@
 <div class="container">
   <h1>All Jobs</h1>
-  <hr>
-  <div class="row">
-    <div class="col-1">
-
+  <% @jobs.each do |job| %>
+  <div class="card">
+    <div class="card-header">
+      <p class="mr-2"><strong><%= job.recruiter.company %></strong></p><span><strong class="mr-1">Status:</strong><%= job.job_status.current_job_status %></span>
     </div>
-    <div class="col-3">
-      <strong><p>Job Title</p></strong>
-    </div>
-    <div class="col-8">
-      <strong><p>Job Description</p></strong>
+    <div class="card-body">
+      <h5 class="card-title"><p><%= job.position %></p></h5>
+      <p class="card-text"><%= job.job_description %></p>
+      <%= link_to 'See More Details', job, class: "btn btn-primary" %><br>
+      <small><%= "Posted #{time_ago_in_words(job.created_at)} ago" %></small>
     </div>
   </div>
-  <% @jobs.each do |job| %>
-    <div class="row">
-      <div class="col-1">
-        <p><%= job.id %>. </p>
-      </div>
-      <div class="col-3">
-        <strong><p><%= link_to job.job_title, job %> </p></strong>
-      </div>
-      <div class="col-8">
-        <p><%= job.job_description %> </p>
-      </div>
-    </div>
   <% end %>
 </div>

@@ -5,8 +5,19 @@ Rails.application.routes.draw do
   resources :panels
   resources :recruiters
   resources :jobs do
-    resources :requests
+    member do
+      patch :close
+      patch :open
+    end
+    resources :requests do
+      member do
+        patch :reject_request
+      end
+    end
+    resources :job_rooms 
   end
+  resources :job_panels
+  resources :public_profiles
   resources :requests
   get 'static/index'
   get 'static/contact'

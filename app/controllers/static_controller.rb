@@ -4,10 +4,10 @@ class StaticController < ApplicationController
       @user = current_user
       @panel = Panel.find_by(user_id: current_user.id)
       if @user.account && @user.freelancer
-        redirect_to @panel and return
+        redirect_to jobs_path and return
       end
       if @user.account && @user.recruiter
-        redirect_to @panel and return
+        redirect_to jobs_path and return
       end
       if !@user.account && @user
         redirect_to new_account_path and return

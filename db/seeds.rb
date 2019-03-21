@@ -11,3 +11,7 @@
     RequestStatus.create!(req_status: 'pending')
     RequestStatus.create!(req_status: 'accepted')
     RequestStatus.create!(req_status: 'rejected')
+    JobStatus.create!(current_job_status: 'Open')
+    JobStatus.create!(current_job_status: 'Closed')
+    JobStatus.create!(current_job_status: 'Finished')
+    

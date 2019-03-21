@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_12_051501) do
+ActiveRecord::Schema.define(version: 2019_03_21_182117) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,27 @@ ActiveRecord::Schema.define(version: 2019_03_12_051501) do
     t.string "last_name"
   end
 
+  create_table "job_panels", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "job_id"
+    t.integer "user_id"
+  end
+
+  create_table "job_rooms", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "job_id"
+    t.integer "user_id"
+    t.string "authorization_code"
+  end
+
+  create_table "job_statuses", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "current_job_status"
+  end
+
   create_table "jobs", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -45,6 +66,10 @@ ActiveRecord::Schema.define(version: 2019_03_12_051501) do
     t.string "job_skills"
     t.integer "recruiter_id"
     t.integer "rate"
+    t.string "position"
+    t.integer "job_status_id", default: 1
+    t.text "objectives"
+    t.integer "user_id"
   end
 
   create_table "panels", force: :cascade do |t|
@@ -52,6 +77,12 @@ ActiveRecord::Schema.define(version: 2019_03_12_051501) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.integer "account_id"
+  end
+
+  create_table "public_profiles", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
   end
 
   create_table "recruiters", force: :cascade do |t|
@@ -86,6 +117,7 @@ ActiveRecord::Schema.define(version: 2019_03_12_051501) do
     t.integer "request_status_id", default: 1
     t.string "request_description"
     t.integer "job_id"
+    t.integer "recruiter_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -98,6 +130,14 @@ ActiveRecord::Schema.define(version: 2019_03_12_051501) do
     t.datetime "updated_at", null: false
     t.integer "registration_status_id", default: 1
     t.boolean "admin", default: false, null: false
+    t.integer "account_type", default: 1
+    t.boolean "is_recruiter", default: false, null: false
+    t.boolean "is_freelancer", default: false, null: false
+    t.string "authorization_code"
+    t.string "second_authorization_code"
+    t.string "third_authorization_code"
+    t.string "fourth_authorization_code"
+    t.integer "current_active_jobs_count", default: 4
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

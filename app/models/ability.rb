@@ -7,12 +7,26 @@ class Ability
       user ||= User.new # guest user (not logged in)
       if user.admin?
         can :manage, :all
+      elsif user.is_recruiter?
+        can :manage, Job, user_id: user.id
+        can :create, Recruiter
+        cannot :create, Request
+        can :update, Request, recruiter_user_id: user.id
+        can :reject, Request, recruiter_user_id: user.id
+        can :show, JobPanel, user_id: user.id
+        can :show, JobRoom, user_id: user.id
+      elsif user.is_freelancer?
+        can :read, Job
+        can :create, Freelancer
+        can :create, Request
+        cannot :update, Request
+        cannot :reject, Request
+        # can :read, JobRoom, authorization_code: user.authorization_code
+        can :read, JobRoom do |j|
+          j.authorization_code == user.authorization_code || j.authorization_code == user.second_authorization_code || j.authorization_code == user.third_authorization_code || j.authorization_code == user.fourth_authorization_code
+        end
       else
         can :create, Account
-        can :create, Freelancer
-        can :create, Recruiter
-        can :read, Panel, user_id: user.id
-        cannot :index, Panel
       end
     #
     # The first argument to `can` is the action you are giving the user

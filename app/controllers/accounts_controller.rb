@@ -2,7 +2,7 @@ class AccountsController < ApplicationController
   before_action :set_account, only: [:show, :destroy, :edit, :update]
   before_action :authenticate_user!
   load_and_authorize_resource
-  
+
   def index
     @accounts = Account.all
   end
@@ -47,9 +47,11 @@ class AccountsController < ApplicationController
       @panel.update_attributes(account_id: @account.id)
       @user.update_attributes(registration_status_id: 2)
       if @account.account_type == 'Freelancer'
+        @user.update_attributes(is_freelancer: true)
         redirect_to new_freelancer_path
       end
       if @account.account_type == 'Recruiter'
+        @user.update_attributes(is_recruiter: true)
         redirect_to new_recruiter_path
       end
     else

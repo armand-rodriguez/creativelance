@@ -6,6 +6,9 @@
   <p></p>
   <strong><p class="mb-2"><%= @user.email %></p></strong>
   <strong><p class="mb-2"><%= @user.account.account_type %></p></strong>
+  <% if @user.account_type === 2 %>
+    <strong><p class="mb-2"><%= @user.current_active_jobs_count %></p></strong>
+  <% end %>
 
   <strong>Profile</strong>
   <hr>

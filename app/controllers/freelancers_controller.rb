@@ -1,4 +1,5 @@
 class FreelancersController <ApplicationController
+  before_action :authenticate_user!
   load_and_authorize_resource
 
   def new
@@ -15,7 +16,7 @@ class FreelancersController <ApplicationController
         flash[:alert] = "You have already created an account!"
         redirect_to @panel and return
       end
-      if @account.account_type == "Recruiter"
+      if @user.is_recruiter?
         flash[:alert] = "You have created a recruiter account and are unable to create a freelancer account with this user!"
         redirect_to new_recruiter_path and return
       end
@@ -31,8 +32,8 @@ class FreelancersController <ApplicationController
       redirect_to @panel and return
 
     end
-    if @account.account_type == "Recruiter"
-      flash[:alert] = "You have created a freelancer account and are unable to create a recruiter account with this user!"
+    if @user.is_recruiter?
+      flash[:alert] = "You have created a recruiter account and are unable to create a freelancer account with this user!"
       redirect_to new_recruiter_path and return
     end
     @freelancer = Freelancer.new(freelancer_params)
