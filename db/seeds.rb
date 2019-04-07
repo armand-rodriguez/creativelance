@@ -14,4 +14,8 @@
     JobStatus.create!(current_job_status: 'Open')
     JobStatus.create!(current_job_status: 'Closed')
     JobStatus.create!(current_job_status: 'Finished')
+    TaskStatus.create!(task_status: 'Not Submitted Yet')
+    TaskStatus.create!(task_status: 'Submission Pending')
+    TaskStatus.create!(task_status: 'Submission Accepted')
+    TaskStatus.create!(task_status: 'Submission Rejected')
     

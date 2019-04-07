@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mb-5">
   <div class="card">
     <h5 class="card-header">Job Requests for <%= @job.job_title.titleize %> for company <%= @job.recruiter.company.titleize %></h5>
     <% if @job.job_status_id == 1 %>
@@ -28,6 +28,10 @@
         <hr>
       <% end %>
 
+    </div>
+    <div class="container">
+      <hr>
+      <%= link_to 'Create New Task', new_job_task_path(@job), class: 'btn btn-primary mb-3' %>
     </div>
   </div>
 </div>

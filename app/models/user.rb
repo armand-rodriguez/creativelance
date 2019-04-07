@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_one :freelancer
   has_one :recruiter
   has_one :public_profile, dependent: :destroy
+  has_many :tasks
   has_many :jobs
   has_many :job_panels
   has_many :job_rooms

@@ -15,6 +15,13 @@ class Ability
         can :reject, Request, recruiter_user_id: user.id
         can :show, JobPanel, user_id: user.id
         can :show, JobRoom, user_id: user.id
+        #you need to revise this next line becausethey may only create tasks that belong to a job that thye have created
+        # can :create, Task, job: { user_id: user.id }
+        can :create, Task
+        can :read, Task, user_id: user.id
+        can :accept, Task, user_id: user.id
+        can :reject, Task, user_id: user.id
+        can :create, Submission
       elsif user.is_freelancer?
         can :read, Job
         can :create, Freelancer
@@ -25,6 +32,10 @@ class Ability
         can :read, JobRoom do |j|
           j.authorization_code == user.authorization_code || j.authorization_code == user.second_authorization_code || j.authorization_code == user.third_authorization_code || j.authorization_code == user.fourth_authorization_code
         end
+        can :read, Task do |t|
+          t.authorization_code == user.authorization_code || t.authorization_code == user.second_authorization_code || t.authorization_code == user.third_authorization_code || t.authorization_code == user.fourth_authorization_code
+        end
+        can :create, Submission
       else
         can :create, Account
       end
