@@ -25,7 +25,7 @@
 .jumbotron {
   //experimental
   height: calc(100vh - 57.63px);
-  background-image: url(/assets/jumbotron-background.png);
+  background-image: image_url('jumbotron-background.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
