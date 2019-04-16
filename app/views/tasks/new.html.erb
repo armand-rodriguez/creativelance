@@ -1,0 +1,23 @@
+<div class="container">
+  <h1 class="inline mr-2">New Task</h1> <p class="inline mr-2">or</p> <%= link_to 'Back To Job Details', @job, class: 'inline' %>
+  <%= form_for([@job, @job.tasks.build], local: true) do |f| %>
+
+    <div class="field mb-3">
+      <%= f.label :description %>
+      <%= f.text_field :description, class: 'form-control' %>
+    </div>
+    <div class="field mb-3">
+      <%= f.label :task_title %>
+      <%= f.text_area :task_title, class: 'form-control' %>
+    </div>
+    <div class="field mb-3">
+      <%= f.label :images %><br>
+      <%= f.file_field :images, multiple: true, class: 'btn btn-info' %>
+    </div>
+    <div class="field mb-3">
+      <%= f.label :documents %><br>
+      <%= f.file_field :documents, multiple: true, class: 'btn btn-info' %>
+    </div>
+    <%= f.submit 'Submit', class: 'btn btn-primary' %>
+  <% end %>
+</div>

@@ -1,0 +1,31 @@
+<div class="container">
+  <h1>Job Forum</h1>
+  <p>The location for all of the materials that are needed for this job.</p>
+  <%= link_to 'Back to Job Details', @job, class: 'btn btn-primary mb-5' %>
+  <div class="mb-5">
+    <h2 class="text-secondary">Progress</h2>
+    <p>You have completed <%= @total_approved_tasks.to_s %> of <%= @total_tasks.to_s %> tasks.</p>
+    <% @tasks.each do |task| %>
+      <% if task.task_status_id === 3 %>
+        <%= fa_icon "circle", style: 'color: #5bc0de;' %>
+      <% else %>
+        <%= fa_icon "circle", style: 'color: red;' %>
+      <% end %>
+    <% end %>
+
+  </div>
+  <% @tasks.each do |task| %>
+    <div class="card mb-3" style="background-color: #c4deee;">
+      <div class="card-body">
+        <h3><bold><%= task.task_title %></bold></h3><% if task.task_status_id === 3 %>
+                                                      <%= fa_icon "check", style: 'color: green;' %>
+                                                    <% elsif task.task_status_id === 4 %>
+                                                      <%= fa_icon "close", style: 'color: red;' %>
+                                                    <% end %>
+        <p><%= truncate(task.task_title) %></p>
+        <p><%= task.task_status.task_status %></p>
+        <%= link_to 'See Task Details', job_task_path(@job, task), class: 'btn btn-info' %>
+      </div>
+    </div>
+  <% end %>
+</div>

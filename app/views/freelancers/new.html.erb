@@ -1,0 +1,46 @@
+<div class="container">
+  <div>
+    <strong><%= current_user.registration_status.reg_status %></strong>
+    <hr>
+  </div>
+  <%= form_with(model: @freelancer, local: true) do |f| %>
+    <% if @freelancer.errors.any? %>
+    <div class="alert alert-danger">
+      <div id="error_explanation">
+        <h2><%= pluralize(@freelancer.errors.count, "error") %> prohibited this freelancer profile from being saved:</h2>
+
+        <ul>
+        <% @freelancer.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+    <% end %>
+    <div class="field">
+      <%= f.label :first_name %>
+      <%= f.text_field :first_name, class: 'form-control input', autofocus: true  %>
+    </div>
+    <div class="field">
+      <%= f.label :last_name %>
+      <%= f.text_field :last_name, class: 'form-control input' %>
+    </div>
+    <div class="field">
+      <%= f.label :skills %>
+      <%= f.text_field :skills, class: 'form-control input' %>
+    </div>
+    <div class="field">
+      <%= f.label :specialization %>
+      <%= f.text_field :specialization, class: 'form-control input' %>
+    </div>
+    <div class="field">
+      <%= f.label :description %>
+      <%= f.text_field :description, class: 'form-control input' %>
+    </div>
+    <div class="field">
+      <%= f.label :resume %>
+      <%= f.text_area :resume, class: 'form-control input mb-4' %>
+    </div>
+    <%= f.submit 'Create this Freelancer', class: 'btn btn-primary' %>
+  <% end %>
+</div>

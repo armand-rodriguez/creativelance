@@ -1,0 +1,29 @@
+<div class="container mb-5">
+  <h1>My Public Profile</h1>
+  <hr>
+  <% if @account.freelancer %>
+    <h5><%= @user.freelancer.first_name.titleize %>
+    <%= @user.freelancer.last_name.titleize %></h5> <br>
+    <h5>About</h5>
+    <%= @user.freelancer.description %> <hr> <br>
+    <h5>Specialization</h5>
+    <%= @user.freelancer.specialization %> <hr> <br>
+    <h5>Skills</h5>
+    <%= @user.freelancer.skills %> <hr> <br>
+
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Resume</h5>
+        <hr>
+        <%= @user.freelancer.resume %>
+      </div>
+    </div>
+
+  <% end %>
+  <% if @account.recruiter %>
+    <%= @user.recruiter.first_name.titleize %>
+    <%= @user.recruiter.last_name.titleize %> <br>
+
+    <strong><%= @user.recruiter.company %></strong>
+  <% end %>
+</div>

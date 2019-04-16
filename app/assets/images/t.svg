@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="705px" height="122px" viewBox="0 0 705 122" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.4 (67378) - http://www.bohemiancoding.com/sketch -->
+    <title>t</title>
+    <desc>Created with Sketch.</desc>
+    <g id="t" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-2" transform="translate(20.000000, 7.000000)">
+            <text id="CREATIVELANCE" font-family="HelveticaNeue-CondensedBlack, Helvetica Neue" font-size="90" font-style="condensed" font-weight="700" line-spacing="90" letter-spacing="-2" fill="#2A5685">
+                <tspan x="93" y="91">CREATIVELANC</tspan>
+                <tspan x="609.18" y="91">E</tspan>
+            </text>
+            <g id="Group" fill-rule="nonzero">
+                <circle id="Oval" fill="#74ACE9" cx="38.5" cy="57.5" r="38.5"></circle>
+                <polygon id="Triangle" fill="#2A5685" transform="translate(52.342896, 44.544103) rotate(26.000000) translate(-52.342896, -44.544103) " points="52.3428959 2.54410272 67.8428959 86.5441027 36.8428959 86.5441027"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

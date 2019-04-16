@@ -1,0 +1,82 @@
+<div class="container">
+
+  <strong class="h1 inline"><%= @task.task_title %></strong>  <br>
+  <span class="<% if @task.task_status_id === 3 %> text-success <% elsif @task.task_status_id === 4 %> text-danger <% else %> text-secondary <% end %>"><%= @task.task_status.task_status %></span>
+  <p><%= @task.description %></p><br>
+  <%= link_to 'Back to Job Forum', job_job_room_path(@job, @job_room), class: 'btn btn-primary' %>
+
+
+  <% if current_user.is_recruiter? && @job.user_id === current_user.id %>
+      <%= link_to 'Accept Task', accept_job_task_path(@job, @task), data: { confirm: 'Are you sure you want to accept this submission?' }, method: :patch, class: 'btn btn-info mr-2' %>
+      <%= link_to 'Reject Task', reject_job_task_path(@job, @task), data: { confirm: 'Are you sure you want to reject this submission?' }, method: :patch, class: 'btn btn-danger' %>
+  <% end %>
+
+
+  <% (0...@task.images.count).each do |image| %>
+    <div class="img-fliud">
+      <%= image_tag(@task.images[image], class: "img-fluid mb-3") %>
+    </div>
+  <% end %>
+  <div class="mt-5 mb-5">
+    <% (0...@task.documents.count).each do |document| %>
+      <div class="img-fliud">
+        <%= link_to "Preview '#{@task.documents[document].filename}'", rails_blob_path(@task.documents[document], disposition: 'preview'), class: 'btn btn-success' %>
+        <%= link_to "Download '#{@task.documents[document].filename}'", rails_blob_path(@task.documents[document], disposition: "attachment"), class: 'btn btn-info' %>
+      </div>
+    <% end %>
+  </div>
+  <hr>
+  <div class="submissions_form mb-5">
+    <strong>Post a Submission</strong>
+    <%= form_for([@task, @task.submissions.build], local: true) do |f| %>
+      <div class="field">
+        <%= f.label :description %>
+        <%= f.text_field :description, class: 'form-control' %>
+      </div>
+      <div class="field mb-3">
+        <%= f.label :link %>
+        <%= f.text_area :link, class: 'form-control' %>
+      </div>
+      <div class="field mb-3">
+        <%= f.label :images %> <br>
+        <%= f.file_field :images, multiple: true, class: 'btn btn-info' %>
+      </div>
+      <div class="field mb-3">
+        <%= f.label :documents %> <br>
+        <%= f.file_field :documents, multiple: true, class: 'btn btn-info' %>
+      </div>
+      <%= f.submit 'Submit Submission', class: 'btn btn-success' %>
+    <% end %>
+    <hr>
+  </div>
+  <div class="all-submissions">
+    <h5 class="mb-5">Submissions</h5>
+    <% if @task_submissions.count === 0 %>
+      <p>There are no submissions for this task yet!</p>
+    <% end %>
+    <% @task_submissions.each do |submission| %>
+      <div class="container mb-5">
+        <strong><%= submission.description %></strong><br>
+        <%= submission.link %>
+
+        <% (0...submission.images.count).each do |image| %>
+          <div class="img-fliud">
+            <%= image_tag(submission.images[image], class: "img-fluid mb-3") %>
+          </div>
+        <% end %>
+        <div class="mt-5 mb-5">
+          <% (0...submission.documents.count).each do |document| %>
+            <div class="img-fliud">
+              <%= link_to "Preview '#{submission.documents[document].filename}'", rails_blob_path(submission.documents[document], disposition: 'preview'), class: 'btn btn-success' %>
+              <%= link_to "Download '#{submission.documents[document].filename}'", rails_blob_path(submission.documents[document], disposition: "attachment"), class: 'btn btn-info' %>
+            </div>
+          <% end %>
+        </div>
+        <hr>
+      </div>
+
+    <% end %>
+  </div>
+
+
+</div>

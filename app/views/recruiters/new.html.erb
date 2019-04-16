@@ -1,0 +1,42 @@
+<div class="container">
+  <div>
+    <strong><%= current_user.registration_status.reg_status %></strong>
+    <hr>
+  </div>
+  <%= form_with(model: @recruiter, local: true) do |f| %>
+    <% if @recruiter.errors.any? %>
+    <div class="alert alert-danger">
+      <div id="error_explanation">
+        <h2><%= pluralize(@recruiter.errors.count, "error") %> prohibited this recruiter profile from being saved:</h2>
+
+        <ul>
+        <% @recruiter.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+    <% end %>
+    <div class="field">
+      <%= f.label :first_name %>
+      <%= f.text_field :first_name, class: 'form-control input', autofocus: true  %>
+    </div>
+    <div class="field">
+      <%= f.label :last_name %>
+      <%= f.text_field :last_name, class: 'form-control input' %>
+    </div>
+    <div class="field">
+      <%= f.label :company %>
+      <%= f.text_field :company, class: 'form-control input' %>
+    </div>
+    <div class="field">
+      <%= f.label :company_description %>
+      <%= f.text_field :company_description, class: 'form-control input' %>
+    </div>
+    <div class="field">
+      <%= f.label :resume %>
+      <%= f.text_area :resume, class: 'form-control input mb-4' %>
+    </div>
+    <%= f.submit 'Create this Recruiter', class: 'btn btn-primary' %>
+  <% end %>
+</div>
